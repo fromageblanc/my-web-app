@@ -92,10 +92,10 @@ class YahooShoppingApi implements Modifier
 	private function getAuth()
 	{
 		// api_authから認証情報を取得
-		$this->auth["appid"] = "dj0zaiZpPVJFcndHTWQ2djdHVSZkPVlXazliV0ZNYzJwMk5tc21jR285TUEtLSZzPWNvbnN1bWVyc2VjcmV0Jng9Y2U-";
+		$this->auth["appid"] = YAHOO_APP_ID;
 		$this->auth["affiliate_type"] = "yid";
-		$this->auth["affiliate_id"] = "AmJXTDjRmK73iuQriDYrpiU-";
-		$this->auth["callback"] = "kangaroonote.com";
+		$this->auth["affiliate_id"] = YAHOO_AFF_ID;
+		$this->auth["callback"] = "*********.com";
 
 	}
 }
