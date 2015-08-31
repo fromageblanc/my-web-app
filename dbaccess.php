@@ -11,7 +11,17 @@ class DbAccess
 		$this->conn = new PDO(DSN,USER,PASSWORD);
 	}
 
-        public function authentication($loginid,$password)         {                 $sql = "select * from auth where delete_flg=false and user_id=?and password=?";                 $stmt = $this->conn->prepare($sql);                 $stmt->execute(array($loginid,$password));                   $res = array();                 while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {                         array_push($res,$row);                 }                 return $res;         }
+        public function authentication($loginid,$password)
+        {
+        	$sql = "select * from auth where delete_flg=false and user_id=?and password=?";
+        	$stmt = $this->conn->prepare($sql);
+        	$stmt->execute(array($loginid,$password));
+        	$res = array();
+        	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        		array_push($res,$row);
+        	}
+        	return $res;
+        }
 
 	public function getNews($params=array())
 	{
@@ -84,7 +94,7 @@ class DbAccess
 			$ret = $stmt->execute(array($requests['review_id']));
 			if ($ret == false) return false;
 		}
-		
+	
 		// member.id の取得
 		if ($first_reg_flg) {
 			$sql = "select id from member where sns_user_id=? and sns=? and delete_flg=false";
@@ -104,9 +114,9 @@ class DbAccess
 		}
 
 		$sql = "insert into review (member_id,	product_id,nickname,	mail_address,category,	product_name,price,	maker,img_path,thumbnail_path,delete_password,review_comment,
-									score_name_01,score_value_01,score_name_02,score_value_02,score_name_03,	score_value_03,score_name_04,score_value_04,
-									score_name_05,score_value_05,score_name_06,score_value_06,score_name_07,	score_value_07,score_name_08,score_value_08,
-									score_name_09,score_value_09,score_name_10,score_value_10) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			score_name_01,score_value_01,score_name_02,score_value_02,score_name_03,	score_value_03,score_name_04,score_value_04,
+			score_name_05,score_value_05,score_name_06,score_value_06,score_name_07,	score_value_07,score_name_08,score_value_08,
+			score_name_09,score_value_09,score_name_10,score_value_10) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		$stmt = $this->conn->prepare($sql);
 		
@@ -144,11 +154,11 @@ class DbAccess
 		}
 
 		$ret = $stmt->execute(array(
-											$member_id,$product_id,	$_POST['nickname'],$_POST['mail'],$category_code,$_POST['product_name'],$_POST['price'],	$_POST['maker'],$img_path,$thumb_path,
-											$_POST['delpasswd'],$_POST['editor1'],$score_item_01,$score_value_01,$score_item_02,$score_value_02,$score_item_03,$score_value_03,
-											$score_item_04,$score_value_04,	$score_item_05,$score_value_05,	$score_item_06,$score_value_06,$score_item_07,$score_value_07,
-											$score_item_08,$score_value_08,	$score_item_09,$score_value_09,	$score_item_10,$score_value_10)
-									);
+				$member_id,$product_id,	$_POST['nickname'],$_POST['mail'],$category_code,$_POST['product_name'],$_POST['price'],	$_POST['maker'],$img_path,$thumb_path,
+				$_POST['delpasswd'],$_POST['editor1'],$score_item_01,$score_value_01,$score_item_02,$score_value_02,$score_item_03,$score_value_03,
+				$score_item_04,$score_value_04,	$score_item_05,$score_value_05,	$score_item_06,$score_value_06,$score_item_07,$score_value_07,
+				$score_item_08,$score_value_08,	$score_item_09,$score_value_09,	$score_item_10,$score_value_10)
+		);
 		if ( !$ret ) print_r($this->conn->errorInfo());
 		return $ret;
 	}
@@ -288,7 +298,7 @@ class DbAccess
 		$fetch_count = $row['count'];
 		$res = array();
 
-//echo $fetch_count;exit();
+// for debug echo $fetch_count;exit();
 		if ($fetch_count > 0) {	
 			$sql = "select r.id as rid,r.nickname as rnickname,r.created as rcreated,r.*,m.*
 						 from review r inner join member m on r.member_id = m.id where  " .$where. " and r.delete_flg=false and m.delete_flg=false order by r.created desc limit ? offset ?";
