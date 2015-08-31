@@ -1,4 +1,5 @@
 <?php
+// 今は動かない・・・
 	require_once('const.php');
 	require_once('twitter-sdk/twitteroauth.php');
   
