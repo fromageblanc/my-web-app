@@ -70,11 +70,11 @@ class Common
 	}
      
 	public static function paginator (  $current_page,     			// 現在ページ
-														$last_page,          				// 最終ページ
-														$list_num=7,     				// ページャーに表示するページ番号群の数。左右対称にするため奇数を指定
-														$path,               				// ＵＲＬ
-														$page_query_name="p",	// クエリー:ページ(GETパラメタ名)
-														$query_key_value_arr=null )		// クエリー:任意配列
+						$last_page,          				// 最終ページ
+						$list_num=7,     				// ページャーに表示するページ番号群の数。左右対称にするため奇数を指定
+						$path,               				// ＵＲＬ
+						$page_query_name="p",	// クエリー:ページ(GETパラメタ名)
+						$query_key_value_arr=null )		// クエリー:任意配列
 	{
 		if (empty($last_page)) return false;
 		$pager = '';
