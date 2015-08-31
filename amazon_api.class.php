@@ -49,11 +49,11 @@ class AmazonApi implements Modifier
 		$parsed_url = parse_url($this->access_url);
 		$string_to_sign = "GET\n{$parsed_url['host']}\n{$parsed_url['path']}\n{$qstr}";
 		$signature = base64_encode(
-									hash_hmac('sha256', 
-												$string_to_sign, 
-												$this->auth['secret_access_key'], 
-												true)
-									);
+					hash_hmac('sha256', 
+						$string_to_sign, 
+						$this->auth['secret_access_key'], 
+						true)
+					);
 
 		$url = $this->access_url.'?'.$qstr.'&Signature='.Common::urlencode_RFC3986($signature);
 
@@ -100,11 +100,11 @@ class AmazonApi implements Modifier
 		$parsed_url = parse_url($this->access_url);
 		$string_to_sign = "GET\n{$parsed_url['host']}\n{$parsed_url['path']}\n{$qstr}";
 		$signature = base64_encode(
-									hash_hmac('sha256', 
-												$string_to_sign, 
-												$this->auth['secret_access_key'], 
-												true)
-									);
+					hash_hmac('sha256', 
+						$string_to_sign, 
+						$this->auth['secret_access_key'], 
+						true)
+					);
 
 		$url = $this->access_url.'?'.$qstr.'&Signature='.Common::urlencode_RFC3986($signature);
 		$context = stream_context_create(array('http' => array('ignore_errors' => true)));
