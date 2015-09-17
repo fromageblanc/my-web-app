@@ -1,4 +1,5 @@
 <?php
+// api require
 require_once("modifier.class.php");
 require_once("amazon_api.class.php");
 require_once("rakuten_api.class.php");
