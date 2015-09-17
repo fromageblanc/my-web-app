@@ -1,6 +1,7 @@
 <?php  
   //認証系は一部マスク
   
+  
   // no depend this const valuable
   require_once("common_methods.class.php");
 
