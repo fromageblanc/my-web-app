@@ -1,4 +1,5 @@
 <?php
+/* DB access module */
 require_once('const.php');
 require_once('common_methods.class.php');
 
